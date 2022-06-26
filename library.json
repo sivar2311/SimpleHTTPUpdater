@@ -16,8 +16,5 @@
     "platforms": [
         "espressif32"
     ],
-    "license": "CC-BY-SA-4.0",
-    "scripts": {
-        "postinstall" : "pioscripts/install.py"
-    }
+    "license": "CC-BY-SA-4.0"
 }
