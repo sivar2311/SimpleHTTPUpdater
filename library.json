@@ -16,5 +16,10 @@
     "platforms": [
         "espressif32"
     ],
+    "examples" : [
+        "examples/HTTPUpdate/HTTPUpdate.ino",
+        "examples/PlatformIO/platformio.ini",
+        "examples/NodeJS_Server/server.js"
+    ],
     "license": "CC-BY-SA-4.0"
 }
