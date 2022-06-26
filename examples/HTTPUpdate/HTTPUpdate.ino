@@ -21,7 +21,7 @@ void setupSimpleHTTPUpdate() {
     SimpleHTTPUpdate.onProgress([](size_t progress, size_t total) { Serial.printf("Update: %d%%\r", (progress / (total / 100)));  });
     SimpleHTTPUpdate.onEnd([]() { Serial.println("\nUpdate finished. Rebooting..."); ESP.restart(); });
     SimpleHTTPUpdate.onError([](SimpleHTTPUpdateError_t err) { Serial.printf("\nUpdate error: %s\r\n", err); });
-    SimpleHTTPUpdate.setInterval(10);
+    SimpleHTTPUpdate.setInterval(300);
     SimpleHTTPUpdate.begin(firmware_download_url, firmware_info_url, FIRMWARE_BUILD);
 }
 
