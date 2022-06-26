@@ -1,0 +1,1 @@
+Library to fetch firmware updates automatically from a HTTP(s)-Server

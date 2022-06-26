@@ -1,0 +1,20 @@
+{
+    "name": "SimpleHTTPUpdater",
+    "authors": [
+        {
+            "name": "Boris Jaeger (sivar2311)",
+            "email": "sivar2311@gmail.com",
+            "maintainer": true
+        }
+    ],
+    "version": "0.1.0",
+    "repository": {
+        "type" : "git",
+        "url" : "https://github.com/sivar2311/SimpleHTTPUpdater"
+    },
+    "frameworks": "arduino",
+    "platforms": [
+        "espressif32"
+    ],
+    "license": "CC-BY-SA-4.0"
+}
