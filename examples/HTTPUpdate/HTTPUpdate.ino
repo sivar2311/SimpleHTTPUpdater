@@ -18,16 +18,16 @@ void setupWiFi() {
 
 void setupSimpleHTTPUpdate() {
     SimpleHTTPUpdate.onBegin([](int version) { Serial.printf("Update: Updating to version %d\r\n", version); });
-    SimpleHTTPUpdate.onProgress([](size_t progress, size_t total) { Serial.printf("Update: %d / %d\r\n", progress, total);  });
-    SimpleHTTPUpdate.onEnd([]() { Serial.println("Update finished. Rebooting..."); ESP.restart(); });
-    SimpleHTTPUpdate.onError([](SimpleHTTPUpdateError_t err) { Serial.printf("Update error: %s\r\n", err); });
+    SimpleHTTPUpdate.onProgress([](size_t progress, size_t total) { Serial.printf("Update: %d%%\r", (progress / (total / 100)));  });
+    SimpleHTTPUpdate.onEnd([]() { Serial.println("\nUpdate finished. Rebooting..."); ESP.restart(); });
+    SimpleHTTPUpdate.onError([](SimpleHTTPUpdateError_t err) { Serial.printf("\nUpdate error: %s\r\n", err); });
     SimpleHTTPUpdate.setInterval(10);
     SimpleHTTPUpdate.begin(firmware_download_url, firmware_info_url, FIRMWARE_BUILD);
 }
 
 void setup() {
     Serial.begin(115200);
-    Serial.printf("Current built: %d\r\n", FIRMWARE_BUILD);
+    Serial.printf("Current version: %d\r\n", FIRMWARE_BUILD);
 
     setupWiFi();
     setupSimpleHTTPUpdate();
