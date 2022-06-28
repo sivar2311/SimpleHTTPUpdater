@@ -1,24 +1,22 @@
-build_version_filename = "..\\..\\..\\..\\versioning.txt"
-version_h_filename     = "..\\..\\..\\..\\src\\version.h"
-build_define = "FIRMWARE_BUILD"
+firmware_info_filename  = "..\\..\\..\\..\\firmware.nfo"
+version_h_filename      = "..\\..\\..\\..\\src\\version.h"
+build_define            = "FIRMWARE_BUILD"
 
-def get_version():
+def get_version(filename):
     try:
-        with open(str(build_version_filename), "r") as f:
+        with open(str(filename), "r") as f:
             counter = int(f.readline())
             f.close()
     except FileNotFoundError:
-            counter = 1
+            counter = 0
     return counter
 
-def update_version(version):
-    filename = build_version_filename
+def update_version(filename, version):
     f = open(filename, "w")
     f.write(str(version))
     f.close()
 
-def make_version_h(version):
-    filename = version_h_filename
+def make_version_h(filename, version):
     f = open(filename, "w")
     f.write("#pragma once\n")
     f.write("\n")
@@ -28,6 +26,6 @@ def make_version_h(version):
 
 
 
-version = get_version()
-make_version_h(version)
-update_version(version+1)
+version = get_version(firmware_info_filename)+1
+make_version_h(version_h_filename, version)
+update_version(firmware_info_filename, version)
