@@ -26,7 +26,7 @@ class SimpleHTTPUpdateClass {
     void onEnd(THandlerFunction_End fn);
     void onError(THandlerFunction_Error fn);
     void onProgress(THandlerFunction_Progress fn);
-
+    void setClient(const WiFiClient& client);
   protected:
     HTTPClient    http;
     String        firmware_url;
@@ -34,6 +34,7 @@ class SimpleHTTPUpdateClass {
     int           update_interval = 300000;
     int           current_version = 0;
     unsigned long last_check      = 0;
+    WiFiClient    client;
 
     THandlerFunction_Begin begin_fn;
     THandlerFunction_End   end_fn;
