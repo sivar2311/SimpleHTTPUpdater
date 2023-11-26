@@ -38,6 +38,14 @@ SimpleHTTPUpdate.handle();
 # Compile & Upload to your webserver
 Compile your project and upload the new versions of `firmware.bin` and `firmware.h` to your webserver.
 
+# Using HTTPS
+If you'd like to use HTTPS, you can do the following:
+```C++
+WiFiClientSecure client;
+client.setCACert("-----BEGIN CERTIFICATE----- your cert here .....");
+SimpleHTTPUpdate.setClient(&client);
+```
+
 # Example
 For details, see the example: [HTTPUpdate.ino](./examples/HTTPUpdate/HTTPUpdate.ino)
 # How it works (PlatformIO)
