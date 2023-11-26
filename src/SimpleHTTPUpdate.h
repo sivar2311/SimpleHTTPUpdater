@@ -15,7 +15,7 @@ using THandlerFunction_Error    = std::function<void(SimpleHTTPUpdateError_t)>;
 using THandlerFunction_Progress = std::function<void(size_t, size_t)>;
 
 class SimpleHTTPUpdateClass {
-  public:
+public:
     void begin(String firmware_url, String firmware_info_url, int current_version);
     void handle();
     void setInterval(unsigned long interval);
@@ -26,15 +26,15 @@ class SimpleHTTPUpdateClass {
     void onEnd(THandlerFunction_End fn);
     void onError(THandlerFunction_Error fn);
     void onProgress(THandlerFunction_Progress fn);
-    void setClient(const WiFiClient& client);
-  protected:
+    void setClient(WiFiClient* client);
+protected:
     HTTPClient    http;
     String        firmware_url;
     String        firmware_info_url;
     int           update_interval = 300000;
     int           current_version = 0;
     unsigned long last_check      = 0;
-    WiFiClient    client;
+    WiFiClient*    client;
 
     THandlerFunction_Begin begin_fn;
     THandlerFunction_End   end_fn;

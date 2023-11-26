@@ -6,7 +6,7 @@ SimpleHTTPUpdateError_t SIMPLEHTTP_UPDATE_OK                 = "OK";
 SimpleHTTPUpdateError_t SIMPLEHTTP_UPDATE_INFO_NOT_FOUND     = "Firmware info not found";
 SimpleHTTPUpdateError_t SIMPLEHTTP_UPDATE_FIRMWARE_NOT_FOUND = "Firmware not found";
 
-void SimpleHTTPUpdateClass::setClient(const WiFiClient& client) {
+void SimpleHTTPUpdateClass::setClient(WiFiClient* client) {
     this->client = client;
 }
 
@@ -22,7 +22,7 @@ int SimpleHTTPUpdateClass::available() {
     if (!firmware_info_url.length()) return version;
 
     http.setFollowRedirects(HTTPC_STRICT_FOLLOW_REDIRECTS);
-    http.begin(client, firmware_info_url);
+    http.begin(*client, firmware_info_url);
     int http_code = http.GET();
     if (http_code == HTTP_CODE_OK || http_code == HTTP_CODE_MOVED_PERMANENTLY) {
         version = http.getString().toInt();
@@ -44,7 +44,7 @@ bool SimpleHTTPUpdateClass::update() {
     if (!firmware_url.length()) return false;
 
     http.setFollowRedirects(HTTPC_STRICT_FOLLOW_REDIRECTS);
-    http.begin(client, firmware_url);
+    http.begin(*client, firmware_url);
 
     int http_code = http.GET();
     if (http_code != HTTP_CODE_OK && http_code != HTTP_CODE_MOVED_PERMANENTLY) {
