@@ -22,7 +22,7 @@ int SimpleHTTPUpdateClass::available() {
     if (!firmware_info_url.length()) return version;
 
     http.setFollowRedirects(HTTPC_STRICT_FOLLOW_REDIRECTS);
-    http.begin(*client, firmware_info_url);
+    if (client) http.begin(*client, firmware_info_url); else http.begin(firmware_info_url);
     int http_code = http.GET();
     if (http_code == HTTP_CODE_OK || http_code == HTTP_CODE_MOVED_PERMANENTLY) {
         version = http.getString().toInt();
@@ -44,7 +44,7 @@ bool SimpleHTTPUpdateClass::update() {
     if (!firmware_url.length()) return false;
 
     http.setFollowRedirects(HTTPC_STRICT_FOLLOW_REDIRECTS);
-    http.begin(*client, firmware_url);
+    if (client) http.begin(*client, firmware_url); else http.begin(firmware_url);
 
     int http_code = http.GET();
     if (http_code != HTTP_CODE_OK && http_code != HTTP_CODE_MOVED_PERMANENTLY) {

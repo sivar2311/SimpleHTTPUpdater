@@ -34,7 +34,7 @@ protected:
     int           update_interval = 300000;
     int           current_version = 0;
     unsigned long last_check      = 0;
-    WiFiClient*    client;
+    WiFiClient*    client         = nullptr;
 
     THandlerFunction_Begin begin_fn;
     THandlerFunction_End   end_fn;

@@ -43,7 +43,7 @@ If you'd like to use HTTPS, you can do the following:
 ```C++
 WiFiClientSecure client;
 client.setCACert("-----BEGIN CERTIFICATE----- your cert here .....");
-SimpleHTTPUpdate.setClient(client);
+SimpleHTTPUpdate.setClient(&client);
 ```
 
 # Example
